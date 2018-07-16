@@ -300,7 +300,6 @@ window.App = {
     var self = this;
 
     var tvalue = parseInt(document.getElementById("token-amount").value);
-    console.log(tvalue);
 
     this.setStatus("Initiating transaction... (please wait)");
 
@@ -321,8 +320,38 @@ window.App = {
       console.log(e);
       self.setStatus("Error sending coin; see log.");
     });
-  }
+  },
 
+  transferOwnership: function() {
+    var self = this;
+
+    var address = document.getElementById("contract-owner-address").value;
+
+    this.setStatus("Initiating transaction... (please wait)");
+
+    var workshop;
+    Workshop.deployed().then(function(instance) {
+      workshop = instance;
+      return workshop.transferOwnership(address, {from: account});
+    }).then(function() {
+      self.setStatus("Transaction complete!");
+    }).catch(function(e) {
+      console.log(e);
+      self.setStatus("Error sending coin; see log.");
+    });
+  },
+
+  hideAndShow: function() {
+    var x = document.getElementById("admin-interface");
+    var b = document.getElementById("hide-and-show");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      b.innerText = "Hide controls";
+    } else {
+      x.style.display = "none";
+      b.innerText = "Show controls";
+    }
+  }
 };
 
 window.addEventListener('load', function() {

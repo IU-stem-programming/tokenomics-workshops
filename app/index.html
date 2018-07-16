@@ -16,7 +16,7 @@
       margin-top: 3em;
     }
     #form {
-      margin-top: 10px;
+      margin-top: 18px;
     }
     .workshop-control .workshop-control-field {
       position: relative;
@@ -78,10 +78,23 @@
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
-    .single-control-field {
+    .short-single-control-field {
       position: relative;
       height: auto;
       width: 7em;
+      -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+              box-sizing: border-box;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 5px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    .medium-single-control-field {
+      position: relative;
+      height: auto;
+      width: 25em;
       -webkit-box-sizing: border-box;
          -moz-box-sizing: border-box;
               box-sizing: border-box;
@@ -127,7 +140,9 @@
       </tbody>
     </table>
   </div>
-  <div class="container-fluid">
+  <button type="button" class="btn btn-sm btn-primary" id="hide-and-show" onclick="App.hideAndShow()">Hide controls</button>
+  <div id="admin-interface">
+  <div class="container-fluid" id="participants" >
     <form class="participant-adding">
       <div class="page-header" id="form">
         <h4>Добавить участника</h4>
@@ -139,8 +154,7 @@
       <br><button id="create-participant" onclick="App.addParticipant()">Добавить</button>
     </form>
   </div>  
-  <br>
-  <div class="container-fluid">
+  <div class="container-fluid" id="projects" >
     <form class="project-adding">
       <div class="page-header" id="form">
         <h4>Добавить проект</h4>
@@ -152,8 +166,7 @@
       <br><button id="create-project" onclick="App.addProject()">Добавить</button>
     </form>
   </div>
-  <br>
-  <div class="container-fluid">
+  <div class="container-fluid" id="workshop">
     <form class="workshop-control">
       <div class="page-header" id="form">
         <h4>Управление воркшопом</h4>
@@ -165,18 +178,27 @@
       <br><button id="create-workshop" onclick="App.createWorkshop()">Создать</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="close-workshop" onclick="App.closeWorkshop()">Закрыть воркшоп</button>
     </form>
   </div>
-  <br>
-  <div class="container-fluid">
+  <div class="container-fluid" id="funds">
     <form>
     <div class="page-header" id="form">
       <h4>Баланс контракта <span id="contract-address"></span></h4>
     </div>
     POA: <span class="black"><span id="poa-balance"></span></span>
     <br>EDC: <span class="black"><span id="edc-balance"></span></span>
-    <br><br><input type="text" id="token-amount" class="single-control-field" placeholder="300"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+    <br><br><input type="text" id="token-amount" class="short-single-control-field" placeholder="300"></input>&nbsp;&nbsp;&nbsp;&nbsp;
     <button id="invest" onclick="App.investTokens()">Инвестировать в проекты</button>&nbsp;&nbsp;&nbsp;&nbsp;
     <button id="share" onclick="App.shareTokens()">Раздать участникам</button>
     </form>
+  </div>
+    <div class="container-fluid" id="funds">
+      <form>
+      <div class="page-header" id="form">
+        <h4>Доступ</h4>
+      </div>
+      <input type="text" id="contract-owner-address" class="medium-single-control-field" placeholder="Адрес нового владельца контракта, например, 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+      <button id="invest" onclick="App.transferOwnership()">Сменить владельца</button>
+      </form>
+    </div>
   </div>
   <br><span id="status"></span>
 </body>
