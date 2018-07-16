@@ -16,3 +16,7 @@ The DApp was written as per request of https://t.me/rustamd (Rustam Davletbayev)
 * Workshops contract at POA.Network: `0x9296d4387cb2ceac073c43969c5997410fa9b31a`
 
 Game interface available on: https://tokenomics-workshops.herokuapp.com/
+
+## Contract re-deploy
+
+As soon as new contracts re-deploied, the section `networks` needs to be updated in JSONs located in `abi`-directory. New contract addressed and transaction hashes need should be provided there. 
